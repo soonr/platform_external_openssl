@@ -27,6 +27,7 @@ include $(BUILD_STATIC_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_SHARED_LIBRARIES := $(log_shared_libraries)
 LOCAL_C_INCLUDES := $(log_c_includes)
+LOCAL_EXPORT_C_INCLUDES := $(log_c_includes)
 
 # If we're building an unbundled build, don't try to use clang since it's not
 # in the NDK yet. This can be removed when a clang version that is fast enough
@@ -43,4 +44,7 @@ LOCAL_MODULE := libcrypto
 LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/android-config.mk $(LOCAL_PATH)/Crypto.mk
 include $(LOCAL_PATH)/Crypto-config-target.mk
 include $(LOCAL_PATH)/android-config.mk
+
+LOCAL_SRC_FILES := $(LOCAL_SRC_FILES_$(TARGET_ARCH_ABI))
+
 include $(BUILD_SHARED_LIBRARY)
